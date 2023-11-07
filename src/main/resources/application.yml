@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: '@artifactId@'
+    
+  kafka:
+    bootstrap-servers:
+    - localhost:9092
+    producer:
+      properties:
+        spring.json.add.type.headers: false
+    consumer:
+      properties:
+        spring.json.trusted.packages: "*"
+    streams:
+      properties:
+        spring.json.add.type.headers: false
+        spring.json.trusted.packages: "*"
+  cloud:
+    function:
+      definition: userProcessor;ageCount
+    stream:
+      bindings:
+        new-user-out-0:
+          destination: new_user
+          binder: kafka
+        userProcessor-in-0:
+          destination: new_user
+        userProcessor-out-0:
+          destination: user_age_count
+        ageCount-in-0:
+          destination: user_age_count
+      kafka:
+        streams:
+          binder:
+            auto-add-partitions: true
+            min-partition-count: 3
+            functions:
+              userProcessor:
+                application-id: userProcessor
+              ageCount:
+                application-id: ageCount
+
+
+    
