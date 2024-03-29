@@ -7,7 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 class KafkaStreamDemoApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void waitConsume() throws InterruptedException {
+		// waiting message consume
+		Thread.sleep(30000);
 	}
 
 }
