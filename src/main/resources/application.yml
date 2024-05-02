@@ -1,7 +1,10 @@
 spring:
   application:
     name: '@artifactId@'
-    
+  docker:
+    compose:
+      skip:
+        in-tests: false
   kafka:
     bootstrap-servers:
     - localhost:9092
