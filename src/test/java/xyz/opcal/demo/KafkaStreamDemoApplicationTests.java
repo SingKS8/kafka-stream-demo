@@ -9,7 +9,7 @@ class KafkaStreamDemoApplicationTests {
 	@Test
 	void waitConsume() throws InterruptedException {
 		// waiting message consume
-		Thread.sleep(30000);
+		Thread.sleep(60000);
 	}
 
 }
